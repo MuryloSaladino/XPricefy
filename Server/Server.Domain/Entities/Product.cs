@@ -8,4 +8,5 @@ public class Product : BaseEntity
     public required float AnnualPrice { get; set; }
     public required int ClientsNumber { get; set; }
     public required int YearsToPay { get; set; }
+    public required List<ProductHistory> productHistories { get; set; } = [];
 }
