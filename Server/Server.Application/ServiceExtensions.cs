@@ -31,9 +31,6 @@ public static class ServiceExtensions
 
     public static void ConfigureAuthentication(this IServiceCollection services)
     {
-        services.AddCors();
-        services.AddControllers();
-
         var key = Encoding.ASCII.GetBytes(DotEnv.Get("SECRET_KEY"));
 
         services.AddAuthentication(x =>
