@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Server.Application.Features.Products.Create;
+using Server.Application.Features.Products.Find;
+using Server.Application.Features.Products.FindAll;
 
 namespace Server.API.Controllers;
 
@@ -16,5 +18,22 @@ public class ProductsController(IMediator mediator) : ControllerBase
     {
         var response = await mediator.Send(request, cancellationToken);
         return Created("/products", response);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<ActionResult<FindProductResponse>> FindProduct(
+        [FromRoute] string id, CancellationToken cancellationToken)
+    {
+        var response = await mediator.Send(new FindProductRequest(id), cancellationToken);
+        return Ok(response);   
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<FindAllProductsResponse>>> FindAllProducts(
+        CancellationToken cancellationToken)
+    {
+        var response = await mediator.Send(new FindAllProductsRequest(), cancellationToken);
+        return Ok(response);   
     }
 }
