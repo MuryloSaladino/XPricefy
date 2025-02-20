@@ -38,38 +38,40 @@ public class AuthenticationService : IAuthentication
     }
 
     public UserSession ExtractToken(string token)
-{
-    var key = Encoding.ASCII.GetBytes(SecretKey);
-    var tokenHandler = new JwtSecurityTokenHandler();
-
-    var validationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateLifetime = true,
-        ClockSkew = TimeSpan.Zero
-    };
+        var key = Encoding.ASCII.GetBytes(SecretKey);
+        var tokenHandler = new JwtSecurityTokenHandler();
 
-    try
-    {
-        var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
-
-        var userId = principal.FindFirst("userId")?.Value;
-        var username = principal.FindFirst("username")?.Value;
-
-        if (userId == null || username == null)
-            throw new SecurityTokenException("Invalid token: missing claims.");
-
-        return new UserSession
+        var validationParameters = new TokenValidationParameters
         {
-            UserId = userId,
-            Username = username
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
         };
+
+        try
+        {
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+
+            var userId = principal.FindFirst("userId")?.Value;
+            var username = principal.FindFirst("username")?.Value;
+
+            if (userId == null || username == null)
+                throw new SecurityTokenException("Invalid token: missing claims.");
+
+            return new UserSession
+            {
+                UserId = userId,
+                Username = username
+            };
+        }
+        catch
+        {
+            throw new AppException("Invalid token", 401);
+        }
     }
-    catch
-    {
-        throw new AppException("Invalid token", 401);
-    }
-}
 }
 
