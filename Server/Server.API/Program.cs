@@ -1,4 +1,5 @@
 using Server.API.Extensions;
+using Server.API.Middlewares.Authorize;
 using Server.Application;
 using Server.Application.Config;
 using Server.Persistence;
@@ -17,13 +18,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureAuthentication();
-
 var app = builder.Build();
 
 var serviceScope = app.Services.CreateScope();
 var dataContext = serviceScope.ServiceProvider.GetService<XpricefyContext>();
 dataContext?.Database.EnsureCreated();
+
+app.UseMiddleware<AuthenticationMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();

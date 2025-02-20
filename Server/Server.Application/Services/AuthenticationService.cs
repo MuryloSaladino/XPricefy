@@ -2,7 +2,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Server.Application.Common.Exceptions;
 using Server.Application.Config;
+using Server.Domain.Common;
 using Server.Domain.Contracts;
 
 namespace Server.Application.Services;
@@ -34,5 +36,40 @@ public class AuthenticationService : IAuthentication
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
+    public UserSession ExtractToken(string token)
+{
+    var key = Encoding.ASCII.GetBytes(SecretKey);
+    var tokenHandler = new JwtSecurityTokenHandler();
+
+    var validationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+
+    try
+    {
+        var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+
+        var userId = principal.FindFirst("userId")?.Value;
+        var username = principal.FindFirst("username")?.Value;
+
+        if (userId == null || username == null)
+            throw new SecurityTokenException("Invalid token: missing claims.");
+
+        return new UserSession
+        {
+            UserId = userId,
+            Username = username
+        };
+    }
+    catch
+    {
+        throw new AppException("Invalid token", 401);
+    }
+}
 }
 
