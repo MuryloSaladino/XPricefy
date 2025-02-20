@@ -20,12 +20,13 @@ public sealed class EditProductHandler(
     public async Task<EditProductResponse> Handle(
         EditProductRequest request, CancellationToken cancellationToken)
     {
-        bool exists = await productRepository.Exists(Guid.Parse(request.Id), cancellationToken);
+        bool exists = await productRepository.Exists(Guid.Parse(request.Id!), cancellationToken);
         if(!exists) {
             throw new AppException("User not found", 404);
         }
 
         var product = mapper.Map<Product>(request);
+        product.Id = Guid.Parse(request.Id!);
         productRepository.Update(product);
 
         await unitOfWork.Save(cancellationToken);
