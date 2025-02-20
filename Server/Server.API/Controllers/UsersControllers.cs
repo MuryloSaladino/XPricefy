@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Server.API.Middlewares.Authenticate;
 using Server.Application.Features.Users.Create;
 using Server.Application.Features.Users.Find;
 
@@ -21,6 +22,7 @@ public class UsersController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
+    [Authenticate]
     public async Task<ActionResult<FindUserResponse>> FindUser(
         [FromRoute] string id, CancellationToken cancellationToken)
     {

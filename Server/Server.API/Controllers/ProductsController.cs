@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Server.API.Middlewares.Authenticate;
 using Server.Application.Features.Products.Create;
 using Server.Application.Features.Products.Delete;
 using Server.Application.Features.Products.Edit;
@@ -10,6 +11,7 @@ namespace Server.API.Controllers;
 
 [ApiController]
 [Route("/products")]
+[Authenticate]
 public class ProductsController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator mediator = mediator;
