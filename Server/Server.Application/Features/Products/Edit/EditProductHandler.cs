@@ -22,7 +22,7 @@ public sealed class EditProductHandler(
     {
         bool exists = await productRepository.Exists(Guid.Parse(request.Id!), cancellationToken);
         if(!exists) {
-            throw new AppException("User not found", 404);
+            throw new AppException("Product not found", 404);
         }
 
         var product = mapper.Map<Product>(request);

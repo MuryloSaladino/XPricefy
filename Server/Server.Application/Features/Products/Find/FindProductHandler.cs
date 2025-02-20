@@ -17,7 +17,7 @@ public sealed class FindProductHandler(
         FindProductRequest request, CancellationToken cancellationToken)
     {
         var product = await productRepository.Get(Guid.Parse(request.Id), cancellationToken) 
-            ?? throw new AppException("User not found", 404);
+            ?? throw new AppException("Product not found", 404);
             
         return mapper.Map<FindProductResponse>(product);
     }
