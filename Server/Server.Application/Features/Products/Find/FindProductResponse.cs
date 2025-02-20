@@ -1,3 +1,5 @@
+using Server.Domain.Entities;
+
 namespace Server.Application.Features.Products.Find;
 
 public sealed record FindProductResponse(
@@ -8,5 +10,6 @@ public sealed record FindProductResponse(
     string Name,
     float AnnualPrice,
     int ClientsNumber,
-    int YearsToPay
+    int YearsToPay,
+    List<ProductHistory> History 
 );
