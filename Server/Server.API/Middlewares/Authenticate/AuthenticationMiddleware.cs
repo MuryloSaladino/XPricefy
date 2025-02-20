@@ -29,9 +29,6 @@ public class AuthenticationMiddleware(RequestDelegate next)
 
         var token = authHeader.Split(" ")[1];
 
-        Console.Write("token: ");
-        Console.WriteLine(token);
-
         try
         {
             var authService = context.RequestServices.GetRequiredService<IAuthentication>();
