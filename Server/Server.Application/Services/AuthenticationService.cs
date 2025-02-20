@@ -62,11 +62,7 @@ public class AuthenticationService : IAuthentication
             if (userId == null || username == null)
                 throw new SecurityTokenException("Invalid token: missing claims.");
 
-            return new UserSession
-            {
-                Id = userId,
-                Username = username
-            };
+            return new UserSession(username, userId);
         }
         catch
         {
