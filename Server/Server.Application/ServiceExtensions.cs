@@ -7,6 +7,7 @@ using Server.Application.Common.Behaviors;
 using Server.Application.Services;
 using Server.Domain.Common;
 using Server.Domain.Contracts;
+using Server.Domain.Entities;
 
 namespace Server.Application;
 
@@ -20,7 +21,7 @@ public static class ServiceExtensions
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         
-        services.AddScoped<UserSession>();
+        services.AddScoped(_ => new UserSession("Anonymous", "Anonymous"));
         
         services.AddScoped<IAuthentication, AuthenticationService>();
         services.AddScoped<IPasswordEncrypter, PasswordEncrypterService>();
