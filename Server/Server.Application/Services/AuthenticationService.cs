@@ -64,7 +64,7 @@ public class AuthenticationService : IAuthentication
 
             return new UserSession
             {
-                UserId = userId,
+                Id = userId,
                 Username = username
             };
         }
