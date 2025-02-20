@@ -1,5 +1,5 @@
 using Server.API.Extensions;
-using Server.API.Middlewares.Authorize;
+using Server.API.Middlewares.Authenticate;
 using Server.Application;
 using Server.Application.Config;
 using Server.Persistence;

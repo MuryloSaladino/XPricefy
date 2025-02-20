@@ -1,6 +1,6 @@
 using Server.Domain.Contracts;
 
-namespace Server.API.Middlewares.Authorize;
+namespace Server.API.Middlewares.Authenticate;
 
 public class AuthenticationMiddleware(RequestDelegate next)
 {
@@ -10,7 +10,7 @@ public class AuthenticationMiddleware(RequestDelegate next)
     {
         var endpoint = context.GetEndpoint();
 
-        var requiresAuth = endpoint?.Metadata.GetMetadata<AuthorizeAttribute>() != null;
+        var requiresAuth = endpoint?.Metadata.GetMetadata<AuthenticateAttribute>() != null;
         
         if (!requiresAuth)
         {
