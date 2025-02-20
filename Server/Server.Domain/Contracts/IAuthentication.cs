@@ -1,5 +1,6 @@
 namespace Server.Domain.Contracts;
 
-public interface IAuthentication {
+public interface IAuthentication
+{
     string GenerateUserToken(string userId, string username);
 }
