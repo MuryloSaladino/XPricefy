@@ -9,13 +9,16 @@ public class BaseRepository<TEntity>(XpricefyContext xpricefyContext) : IBaseRep
     where TEntity : BaseEntity
 {
     protected readonly XpricefyContext context = xpricefyContext;
-
+    private readonly DbSet<TEntity> dbSet = xpricefyContext.Set<TEntity>();
 
     public void Create(TEntity entity)
         => context.Add(entity);
 
     public void Update(TEntity entity)
-        => context.Update(entity);
+    {
+        entity.UpdatedAt = DateTime.Now;
+        context.Update(entity);
+    }
 
     public Task<TEntity?> Get(Guid id, CancellationToken cancellationToken)
         => context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
@@ -27,5 +30,10 @@ public class BaseRepository<TEntity>(XpricefyContext xpricefyContext) : IBaseRep
     {
         entity.DeletedAt = DateTime.Now;
         context.Update(entity);
+    }
+
+    public Task<bool> Exists(Guid id, CancellationToken cancellationToken)
+    {
+        return dbSet.AnyAsync(e => EF.Property<Guid>(e, "Id") == id, cancellationToken);
     }
 }
