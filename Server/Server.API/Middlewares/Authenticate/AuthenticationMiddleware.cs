@@ -23,11 +23,14 @@ public class AuthenticationMiddleware(RequestDelegate next)
         if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.WriteAsync("Unauthorized: Missing or invalid Authorization header.");
+            await context.Response.WriteAsync("{\"message\": \"Missing or invalid Authorization header\"}");
             return;
         }
 
         var token = authHeader.Split(" ")[1];
+
+        Console.Write("token: ");
+        Console.WriteLine(token);
 
         try
         {
@@ -41,7 +44,7 @@ public class AuthenticationMiddleware(RequestDelegate next)
         catch
         {
             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            await context.Response.WriteAsync("Unauthorized: Invalid token.");
+            await context.Response.WriteAsync("{\"message\": \"Invalid token\"}");
         }
     }
 }
