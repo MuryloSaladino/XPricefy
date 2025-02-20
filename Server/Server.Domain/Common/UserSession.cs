@@ -1,13 +1,7 @@
 namespace Server.Domain.Common;
 
-public class UserSession
+public class UserSession(string username, string id)
 {
-    public string Username { get; set; }
-    public Guid Id { get; set; }
-
-    public UserSession(string username, string id)
-    {
-        Username = username;
-        Id = Guid.Parse(id);
-    }
+    public string Username { get; set; } = username;
+    public Guid Id { get; set; } = Guid.Parse(id);
 }
