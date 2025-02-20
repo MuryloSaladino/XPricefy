@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Server.Application.Features.Users.Create;
+using Server.Application.Features.Users.Find;
 
 namespace Server.API.Controllers;
 
@@ -16,5 +17,14 @@ public class UsersController(IMediator mediator) : ControllerBase
     {
         var response = await mediator.Send(request, cancellationToken);
         return Created("/users", response);
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<ActionResult<FindUserResponse>> FindUser(
+        [FromRoute] string id, CancellationToken cancellationToken)
+    {
+        var response = await mediator.Send(new FindUserRequest(id), cancellationToken);
+        return Ok(response);
     }
 }
