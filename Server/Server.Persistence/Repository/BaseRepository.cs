@@ -21,10 +21,11 @@ public class BaseRepository<TEntity>(XpricefyContext xpricefyContext) : IBaseRep
     }
 
     public Task<TEntity?> Get(Guid id, CancellationToken cancellationToken)
-        => context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        => context.Set<TEntity>()
+            .FirstOrDefaultAsync(entity => entity.Id == id && entity.DeletedAt == null, cancellationToken);
 
     public Task<List<TEntity>> GetAll(CancellationToken cancellationToken)
-        => context.Set<TEntity>().ToListAsync(cancellationToken);
+        => context.Set<TEntity>().Where(entity => entity.DeletedAt == null).ToListAsync(cancellationToken);
 
     public void Delete(TEntity entity)
     {
