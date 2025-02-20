@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Server.Application.Features.Products.Create;
+using Server.Application.Features.Products.Edit;
 using Server.Application.Features.Products.Find;
 using Server.Application.Features.Products.FindAll;
 
@@ -35,5 +36,15 @@ public class ProductsController(IMediator mediator) : ControllerBase
     {
         var response = await mediator.Send(new FindAllProductsRequest(), cancellationToken);
         return Ok(response);   
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<ActionResult<EditProductResponse>> EditProduct(
+        [FromRoute] string id, EditProductRequest request, CancellationToken cancellationToken)
+    {
+        request.Id = id;
+        var response = await mediator.Send(request, cancellationToken);
+        return Ok(response);
     }
 }
