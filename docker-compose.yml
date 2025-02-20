@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      SA_PASSWORD: "B0schStr0ngPassw0rd!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "sqlcmd -S localhost -U sa -P B0schStr0ngPassw0rd! -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+  backend:
+    build: 
+      context: ./Server
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MyDatabase;User Id=sa;Password=B0schStr0ngPassw0rd!;
+    ports:
+      - "5000:5000"
+
+#  frontend:
+#    build:
+#      context: ./Website
+#      dockerfile: Dockerfile
+#    container_name: frontend
+#    depends_on:
+#      - backend
+#    ports:
+#      - "80:80"
+
+volumes:
+  mssql_data:
