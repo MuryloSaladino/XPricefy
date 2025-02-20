@@ -7,7 +7,7 @@ using Server.Domain.Contracts;
 
 namespace Server.Application.Services;
 
-public class AuthenticationService : IAuthenticationService
+public class AuthenticationService : IAuthentication
 {
     public string SecretKey { get; private set; } = DotEnv.Get("SECRET_KEY");
     public int ExpireHours { get; private set; } = int.Parse(DotEnv.Get("EXPIRE_HOURS"));

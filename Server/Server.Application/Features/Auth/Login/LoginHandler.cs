@@ -8,12 +8,12 @@ namespace Server.Application.Features.Auth.Login;
 public sealed class LoginHandler(
     IPasswordEncrypter encrypter,
     IUserRepository userRepository,
-    IAuthenticationService authentication
+    IAuthentication authentication
 ) : IRequestHandler<LoginRequest, LoginResponse>
 {
     private readonly IPasswordEncrypter encrypter = encrypter;
     private readonly IUserRepository userRepository = userRepository;
-    private readonly IAuthenticationService authentication = authentication;
+    private readonly IAuthentication authentication = authentication;
 
     public async Task<LoginResponse> Handle(
         LoginRequest request, CancellationToken cancellationToken)

@@ -26,7 +26,7 @@ public static class ServiceExtensions
         
         services.AddScoped<UserSession>();
         
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IAuthentication, AuthenticationService>();
         services.AddScoped<IPasswordEncrypter, PasswordEncrypterService>();
     }
 
