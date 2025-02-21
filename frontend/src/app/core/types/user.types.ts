@@ -4,7 +4,4 @@ export interface User extends BaseEntity {
     username: string;
 }
 
-export interface UserCreation {
-    username: string;
-    password: string;
-}
+export interface UserCreation extends Omit<User, keyof BaseEntity> {}
