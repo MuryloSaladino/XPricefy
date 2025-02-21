@@ -1,16 +1,6 @@
-import { enableProdMode } from '@angular/core';
-
-import 'rxjs/add/operator/map';
-
-import { environment } from './environments/environment';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
 
-if (environment.production) {
-    enableProdMode();
-}
-
-bootstrapApplication(AppComponent, {
-    providers: [AppRoutingModule]
-}).catch(err => console.error(err));
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));
