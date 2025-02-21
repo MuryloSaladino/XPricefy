@@ -16,7 +16,7 @@ public sealed class FindProductHandler(
     public async Task<FindProductResponse> Handle(
         FindProductRequest request, CancellationToken cancellationToken)
     {
-        var product = await productRepository.Get(Guid.Parse(request.Id), cancellationToken) 
+        var product = await productRepository.GetProductWithHistory(Guid.Parse(request.Id), cancellationToken) 
             ?? throw new AppException("Product not found", 404);
             
         return mapper.Map<FindProductResponse>(product);
