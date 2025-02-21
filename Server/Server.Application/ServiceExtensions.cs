@@ -1,6 +1,7 @@
 using System.Reflection;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 using Server.Application.Common.Behaviors;
@@ -21,7 +22,17 @@ public static class ServiceExtensions
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         
-        services.AddScoped(_ => new UserSession("Anonymous", "Anonymous"));
+        services.AddHttpContextAccessor();
+        services.AddScoped(provider =>
+        {
+            var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+            var context = httpContextAccessor.HttpContext;
+
+            if (context?.Items["UserSession"] is UserSession session)
+                return session;
+
+            return new UserSession("Anonymous", null); 
+        });
         
         services.AddScoped<IAuthentication, AuthenticationService>();
         services.AddScoped<IPasswordEncrypter, PasswordEncrypterService>();
