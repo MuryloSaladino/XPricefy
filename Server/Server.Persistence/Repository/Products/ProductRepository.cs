@@ -12,5 +12,5 @@ public class ProductRepository(XpricefyContext xpricefyContext)
         => await context
             .Set<Product>()
             .Include(p => p.ProductHistories)
-            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+            .FirstOrDefaultAsync(p => p.Id == id && p.DeletedAt != null, cancellationToken);
 }
