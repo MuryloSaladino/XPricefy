@@ -21,5 +21,8 @@ public class XpricefyContext(DbContextOptions<XpricefyContext> options) : DbCont
 
         modelBuilder.Entity<ProductHistory>()
             .HasKey(s => s.Id);
+        modelBuilder.Entity<ProductHistory>()
+            .Property(ph => ph.Action)
+            .HasConversion<int>();
     }
 }

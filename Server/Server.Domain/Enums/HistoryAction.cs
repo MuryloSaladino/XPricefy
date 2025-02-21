@@ -2,7 +2,7 @@ namespace Server.Domain.Enums;
 
 public enum HistoryAction
 {
-    CREATE,
-    UPDATE,
-    DELETE,
+    Created = 1,
+    Updated = 2,
+    Deleted = 3,
 }
