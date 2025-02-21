@@ -32,14 +32,17 @@ public sealed class CreateProductHandler(
         var product = mapper.Map<Product>(request);
         productRepository.Create(product);
         
-        var user = await userRepository.Get(session.Id, cancellationToken)
+        var userId = session.Id ?? throw new AppException("Unauthorized", 401);
+        var user = await userRepository.Get(userId, cancellationToken)
             ?? throw new AppException("User not found", 404);
 
         var history = new ProductHistory()
         {
-            Action = HistoryAction.CREATE,
+            Action = HistoryAction.Created,
             Product = product,
-            User = user
+            ProductId = product.Id,
+            User = user,
+            UserId = userId
         };
         productHistoryRepository.Create(history);
 
