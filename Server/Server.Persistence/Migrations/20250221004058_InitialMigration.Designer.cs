@@ -12,7 +12,7 @@ using Server.Persistence.Context;
 namespace Server.Persistence.Migrations
 {
     [DbContext(typeof(XpricefyContext))]
-    [Migration("20250220175521_InitialMigration")]
+    [Migration("20250221004058_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -61,14 +61,20 @@ namespace Server.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -109,7 +115,9 @@ namespace Server.Persistence.Migrations
                 {
                     b.HasOne("Server.Domain.Entities.Product", null)
                         .WithMany("ProductHistories")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Server.Domain.Entities.Product", b =>
