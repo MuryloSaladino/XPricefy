@@ -1,0 +1,43 @@
+<div class="modal">
+    <div class="modal-content">
+        <button class="close-button" (click)="closeModal()">X</button>
+        
+        <h3>Create Product</h3>
+
+        <form
+            [formGroup]="createProductForm"
+            (ngSubmit)="submit()"
+        >
+            <app-input
+                label="Name"
+                [(ngModel)]="createProductForm.value.name"
+                formControlName="name"
+                [error]="createProductForm.controls['name'].invalid && createProductForm.controls['name'].touched"
+            />
+            <app-input
+                label="Annual Price"
+                [(ngModel)]="createProductForm.value.annualPrice"
+                formControlName="annualPrice"
+                type="number"
+                [error]="createProductForm.controls['annualPrice'].invalid && createProductForm.controls['annualPrice'].touched"
+            />
+            <app-input
+                label="Expected Number of Clients"
+                [(ngModel)]="createProductForm.value.clientsNumber"
+                formControlName="clientsNumber"
+                type="number"
+                [error]="createProductForm.controls['clientsNumber'].invalid && createProductForm.controls['clientsNumber'].touched"
+            />
+            <app-input
+                label="Years to Pay"
+                [(ngModel)]="createProductForm.value.yearsToPay"
+                formControlName="yearsToPay"
+                type="number"
+                [error]="createProductForm.controls['yearsToPay'].invalid && createProductForm.controls['yearsToPay'].touched"
+            />
+            <app-button
+                type="submit"
+            >Save</app-button>
+        </form>
+    </div>
+</div>
