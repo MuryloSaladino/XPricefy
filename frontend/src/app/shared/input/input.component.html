@@ -1,0 +1,19 @@
+<div class="input_container">
+    <input 
+        [id]="id"
+        [type]="type"
+        [disabled]="disabled"
+        placeholder=" "
+        [ngClass]="{
+            'input': true,
+            'error': error
+        }"
+        [value]="value"
+        (input)="handleInput($event)"
+        (blur)="onTouched()"
+    />
+    
+    <label *ngIf="label" class="label" [htmlFor]="id">{{ label }}</label>
+
+    <small *ngIf="helperText" class="helper_text">{{ helperText }}</small>
+</div>
