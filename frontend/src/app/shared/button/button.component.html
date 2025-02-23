@@ -1,0 +1,8 @@
+<button 
+    [class]="getClass()"
+    [disabled]="disabled"
+    (click)="onClick.emit($event)"
+>
+    <app-icon *ngIf="iconName" [name]="iconName" [size]="size"></app-icon>
+    <ng-content></ng-content>
+</button>
