@@ -1,0 +1,20 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Annual Price</th>
+                <th>Last Updated Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of products; let i = index" (click)="navigateToDetails(row.id)">
+                <td>{{ i + 1 }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ pricingService.getCostWithMargin(row) | brlCurrency }}</td>
+                <td>{{ row.updatedAt | formatDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

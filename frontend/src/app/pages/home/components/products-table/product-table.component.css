@@ -1,0 +1,38 @@
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: max-content;
+    border-collapse: collapse;
+}
+
+
+thead {
+    padding-bottom: 1rem;
+    background-color: var(--gray-100);
+}
+
+th {
+    width: max-content;
+    padding: 1rem 0.5rem;
+}
+
+tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: 0.15s;
+    cursor: pointer;
+}
+tr:nth-child(even) {
+    background-color: var(--gray-100);
+}
+tr:hover {
+    background-color: var(--gray-200);
+}
+
+td {
+    text-align: center;
+    padding: 1rem;
+}
