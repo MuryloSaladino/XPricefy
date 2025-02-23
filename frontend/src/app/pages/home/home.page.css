@@ -1,0 +1,41 @@
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 3rem auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    background-color: var(--gray-0);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.create-btn {
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+
+    background-color: var(--gray-100);
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 0.3rem;
+    border-radius: 50%;
+
+    cursor: pointer;
+    transition: 0.15s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create-btn:hover {
+    background-color: var(--gray-200);
+}
