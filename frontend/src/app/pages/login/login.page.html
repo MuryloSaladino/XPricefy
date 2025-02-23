@@ -1,0 +1,26 @@
+<div class="background">
+    <form
+        class="container"
+        [formGroup]="loginForm"
+        (ngSubmit)="doLogin()"
+    >
+        <h2>Xpricefy</h2>
+
+        <app-input
+            label="Username"
+            [(ngModel)]="loginForm.value.username"
+            formControlName="username"
+            [error]="loginForm.controls['username'].invalid && loginForm.controls['username'].touched"
+        />
+
+        <app-input
+            label="Password"
+            [(ngModel)]="loginForm.value.password"
+            formControlName="password"
+            [type]="'password'"
+            [error]="loginForm.controls['password'].invalid && loginForm.controls['password'].touched"
+        />
+
+        <app-button>Login</app-button>
+    </form>
+</div>
