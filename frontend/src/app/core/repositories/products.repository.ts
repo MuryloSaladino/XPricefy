@@ -27,7 +27,7 @@ export class ProductsRepository {
         );
     }
 
-    async findAllProducts(id: string): Promise<Product[]> {
+    async findAllProducts(): Promise<Product[]> {
         return firstValueFrom(
             this.httpClient.get<Product[]>(`${this.apiUrl}/products`)
         );
