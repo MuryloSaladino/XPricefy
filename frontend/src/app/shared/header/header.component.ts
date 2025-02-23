@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "src/app/core/services/auth.service";
 import { TokenService } from "src/app/core/services/token.service";
 
 @Component({
@@ -12,9 +14,16 @@ export class HeaderComponent implements OnInit {
     
     constructor(
         private readonly tokenService: TokenService,
+        private readonly authService: AuthService,
+        private readonly router: Router,
     ) {}
 
     ngOnInit(): void {
         this.username = this.tokenService.decodeToken().username;
+    }
+
+    logout() {
+        this.authService.logout();
+        this.router.navigate(["/login"]);
     }
 }
