@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/core/services/auth.service";
@@ -8,14 +8,14 @@ import { AuthService } from "src/app/core/services/auth.service";
     templateUrl: "./login.page.html",
     styleUrls: ["login.page.css"]
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
 
     loginForm!: FormGroup;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private authService: AuthService,
-        private router: Router
+        private readonly formBuilder: FormBuilder,
+        private readonly authService: AuthService,
+        private readonly router: Router
     ) {}
 
     ngOnInit(): void {
