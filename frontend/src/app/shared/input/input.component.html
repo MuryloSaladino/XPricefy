@@ -15,5 +15,5 @@
     
     <label *ngIf="label" class="label" [htmlFor]="id">{{ label }}</label>
 
-    <small *ngIf="helperText" class="helper_text">{{ helperText }}</small>
+    <small *ngIf="helperText && error" class="helper_text">{{ helperText }}</small>
 </div>
