@@ -1,8 +1,10 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TokenService } from "./token.service";
-import { Observable, tap } from "rxjs";
+import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
+import { User } from "../types/user.types";
+import { UsersRepository } from "../repositories/users.repository";
 
 interface LoginResponse {
     token: string;
@@ -14,22 +16,38 @@ interface LoginResponse {
 export class AuthService {
 
     private apiUrl: string = environment.apiUrl;
+    private userSubject = new BehaviorSubject<User | null>(null);
     
+    user$ = this.userSubject.asObservable();
+
     constructor(
         private readonly httpClient: HttpClient,
-        private readonly tokenService: TokenService
+        private readonly tokenService: TokenService,
+        private readonly usersRepository: UsersRepository
     ) {}
 
-    login(username: string, password: string): Observable<HttpResponse<LoginResponse>> {
-        return this.httpClient.post<LoginResponse>(
+    async login(username: string, password: string): Promise<void> {
+        const response = await firstValueFrom(this.httpClient.post<LoginResponse>(
             `${this.apiUrl}/auth/login`,
-            { username, password },
-            { observe: "response" }
-        ).pipe(
-            tap((response) => {
-                const token = response.body?.token || "";
-                this.tokenService.saveToken(token);
-            })
-        )
+            { username, password }
+        ));
+
+        this.tokenService.saveToken(response.token);
+
+        const decodedToken = this.tokenService.decodeToken();
+        const userId = decodedToken.userId;
+
+        const user = await this.usersRepository.findUserById(userId);
+        this.userSubject.next(user);
+    }
+
+    verifyToken() {
+        return this.tokenService.hasToken() && 
+            !!this.tokenService.decodeToken().userId
+    }
+
+    logout(): void {
+        this.tokenService.deleteToken();
+        this.userSubject.next(null);
     }
 }
