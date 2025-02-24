@@ -1,0 +1,8 @@
+<div *ngIf="user && history" class="container">
+    <app-avatar [username]="user.username"/>
+    <span>
+        <b>{{user.username.toUpperCase()}}</b>
+        {{history.action | historyActionName}} this product on 
+        {{history.updatedAt | formatDate: "DD/MM/YYYY [at] HH[h]mm"}}.
+    </span>
+</div>
