@@ -1,0 +1,57 @@
+<div class="modal">
+    <div class="modal-content">
+        <button class="close-button" (click)="closeModal()">X</button>
+        
+        <h3>Create Product</h3>
+
+        <form
+            [formGroup]="editProductForm"
+            (ngSubmit)="submit()"
+        >
+            <app-input
+                label="Name"
+                [(ngModel)]="editProductForm.value.name"
+                formControlName="name"
+                [error]="editProductForm.controls['name'].invalid && editProductForm.controls['name'].touched"
+                helperText="You must provide a name with at least 3 characters"
+            />
+            <app-input
+                label="Price"
+                [(ngModel)]="editProductForm.value.price"
+                formControlName="price"
+                type="number"
+                [error]="editProductForm.controls['price'].invalid && editProductForm.controls['price'].touched"
+                helperText="You must provide a price for the product"
+            />
+            <app-input
+                label="Expected Number of Clients"
+                [(ngModel)]="editProductForm.value.clientsNumber"
+                formControlName="clientsNumber"
+                type="number"
+                [error]="editProductForm.controls['clientsNumber'].invalid && editProductForm.controls['clientsNumber'].touched"
+                helperText="You must provide an expected number of clients for the product"
+            />
+            <app-input
+                label="Years to Pay"
+                [(ngModel)]="editProductForm.value.yearsToPay"
+                formControlName="yearsToPay"
+                type="number"
+                [error]="editProductForm.controls['yearsToPay'].invalid && editProductForm.controls['yearsToPay'].touched"
+                helperText="Number has to be between 0 and 5"
+            />
+            <app-input
+                label="Tax (margin)"
+                value="5%"
+                [disabled]="true"
+            />
+            <app-input
+                label="Euro"
+                value="R$ 5,75"
+                [disabled]="true"
+            />
+            <app-button
+                type="submit"
+            >Save</app-button>
+        </form>
+    </div>
+</div>
