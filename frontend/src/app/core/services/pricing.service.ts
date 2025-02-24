@@ -13,23 +13,23 @@ export class PricingService {
         return product.price * (1 + MARGIN);
     }
 
-    getAnnualCost(product: Product) {
+    getAnnualCost(product: Product | ProductSummary) {
         return product.price / product.yearsToPay;
     }
 
-    getCostPerClient(product: Product) {
+    getCostPerClient(product: Product | ProductSummary) {
         return this.getAnnualCost(product) / product.clientsNumber;
     }
 
-    getCostPerClientWithTax(product: Product) {
+    getCostPerClientWithTax(product: Product | ProductSummary) {
         return this.getCostPerClient(product) * (1 + MARGIN);
     }
 
-    getCostPerClientWithEuroTax(product: Product) {
+    getCostPerClientWithEuroTax(product: Product | ProductSummary) {
         return this.getCostPerClientWithTax(product) / EURO_PRICE;
     }
 
-    getMensalCostPerClientWithEuroTax(product: Product) {
+    getMensalCostPerClientWithEuroTax(product: Product | ProductSummary) {
         return this.getAnnualCost(product) / 12 / product.clientsNumber * (1 + MARGIN) / EURO_PRICE;
     }
 }
