@@ -1,12 +1,8 @@
-# 🚀 Xpricefy
+# 🚀 Project Name
 
-Welcome to **Xpricefy**! This project is designed to provide an efficient and scalable solution for [briefly describe the purpose of your project].
+Welcome to **Project Name**! This project is designed to provide an efficient and scalable solution for managing pricing of solutions in an IT department.
 
-## 📦 Features
-
-✅ **Easy Deployment**: Just run a single command to get started!  
-✅ **Scalable & Maintainable**: Designed with best practices to ensure long-term usability.  
-✅ **User-Friendly Interface**: Intuitive and easy to navigate.
+# Running the App
 
 ## 🔧 Prerequisites
 
@@ -23,10 +19,21 @@ To run the project, simply execute the following command in your terminal:
 docker-compose up --build
 ```
 
+### ⚠️ Observations
+🔴 **SQL Server Image Size**: The SQL Server image used in this project is quite large. It might take a while to download.
+
 Once the build is complete, open your browser and go to:
 
 🌍 **[localhost:4200](http://localhost:4200)**
 
+
+# About The Project
+
+## 📦 Features
+
+✅ **Easy Deployment**: Just run a single command to get started!  
+✅ **Scalable & Maintainable**: Designed with best practices to ensure long-term usability.  
+✅ **User-Friendly Interface**: Intuitive and easy to navigate.
 
 ## 🛠️ Technologies Used
 
@@ -42,3 +49,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use and 
 ---
 
 Made with ❤️ by **Murylo Saladino**
+
