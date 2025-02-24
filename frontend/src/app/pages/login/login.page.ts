@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthService } from "src/app/core/services/auth.service";
+import { AuthService, LoginPayload } from "src/app/core/services/auth.service";
 import { PopulateService } from "src/app/core/services/populate.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
 
     loginForm!: FormGroup;
     loading: boolean = false;
-    message: string | null = null; 
+    populatedAccess: LoginPayload | null = null;
 
     constructor(
         private readonly formBuilder: FormBuilder,
@@ -43,8 +43,16 @@ export class LoginPage implements OnInit {
 
     async populate() {
         this.loading = true;
-        const access = await this.populateService.populate();
+        this.populatedAccess = await this.populateService.populate();
         this.loading = false;
-        this.message = `Username: ${access.username} | Password: ${access.password}`;
+    }
+
+    writeToFields() {
+        if (this.populatedAccess) {
+            this.loginForm.patchValue({
+                username: this.populatedAccess.username,
+                password: this.populatedAccess.password
+            });
+        }
     }
 }
