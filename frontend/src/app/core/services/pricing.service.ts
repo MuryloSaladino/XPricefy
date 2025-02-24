@@ -10,11 +10,11 @@ const EURO_PRICE = 5.75;
 export class PricingService {
 
     getCostWithMargin(product: Product | ProductSummary) {
-        return product.annualPrice * (1 + MARGIN);
+        return product.price * (1 + MARGIN);
     }
 
     getAnnualCost(product: Product) {
-        return product.annualPrice / product.yearsToPay;
+        return product.price / product.yearsToPay;
     }
 
     getCostPerClient(product: Product) {

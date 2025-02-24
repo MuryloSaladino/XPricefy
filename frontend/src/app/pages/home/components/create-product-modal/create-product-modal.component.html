@@ -16,12 +16,12 @@
                 helperText="You must provide a name with at least 3 characters"
             />
             <app-input
-                label="Annual Price"
-                [(ngModel)]="createProductForm.value.annualPrice"
-                formControlName="annualPrice"
+                label="Price"
+                [(ngModel)]="createProductForm.value.price"
+                formControlName="price"
                 type="number"
-                [error]="createProductForm.controls['annualPrice'].invalid && createProductForm.controls['annualPrice'].touched"
-                helperText="You must provide an annual price for the product"
+                [error]="createProductForm.controls['price'].invalid && createProductForm.controls['price'].touched"
+                helperText="You must provide a price for the product"
             />
             <app-input
                 label="Expected Number of Clients"
@@ -37,7 +37,17 @@
                 formControlName="yearsToPay"
                 type="number"
                 [error]="createProductForm.controls['yearsToPay'].invalid && createProductForm.controls['yearsToPay'].touched"
-                helperText="You must provide how many years it is expected to be paid, between 0 and 5"
+                helperText="Number has to be between 0 and 5"
+            />
+            <app-input
+                label="Tax (margin)"
+                value="5%"
+                [disabled]="true"
+            />
+            <app-input
+                label="Euro"
+                value="R$ 5,75"
+                [disabled]="true"
             />
             <app-button
                 type="submit"

@@ -25,7 +25,7 @@ export class CreateProductModal implements OnInit {
     ngOnInit(): void {
         this.createProductForm = this.formBuilder.group({
             name: [null, [Validators.required, Validators.minLength(3)]],
-            annualPrice: [null, [Validators.required, Validators.min(0)]],
+            price: [null, [Validators.required, Validators.min(0)]],
             clientsNumber: [null, [Validators.required, Validators.min(0)]],
             yearsToPay: [null, [Validators.required, Validators.min(0), Validators.max(5)]],
         })
@@ -36,17 +36,15 @@ export class CreateProductModal implements OnInit {
     }
 
     async submit() {
-        console.log(this.createProductForm.value);
-        
         try {
             const name = this.createProductForm.value.name;
-            const annualPrice = Number(this.createProductForm.value.annualPrice);
+            const price = Number(this.createProductForm.value.price);
             const clientsNumber = Number(this.createProductForm.value.clientsNumber);
             const yearsToPay = Number(this.createProductForm.value.yearsToPay);
 
             await this.productsRepository.createProduct({
                 name,
-                annualPrice,
+                price,
                 clientsNumber,
                 yearsToPay,
             });
