@@ -7,6 +7,10 @@ import { PricingDetails } from './pages/pricing-details/pricing-details.page';
 
 const routes: Routes = [
     {
+        path: "**",
+        component: LoginPage,
+    },
+    {
         path: "login",
         component: LoginPage,
     },
