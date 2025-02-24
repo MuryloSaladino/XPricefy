@@ -26,10 +26,8 @@ export class PricingDetails implements OnInit {
     }
     
     async ngOnInit(): Promise<void> {
-        setTimeout(async () => {
-            await this.updateProduct();
-            this.loading = false;
-        }, 1)
+        await this.updateProduct();
+        this.loading = false;
     }
 
     async updateProduct() {
