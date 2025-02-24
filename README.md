@@ -1,6 +1,6 @@
-# 🚀 Project Name
+# 🚀 Xpricefy
 
-Welcome to **Project Name**! This project is designed to provide an efficient and scalable solution for managing pricing of solutions in an IT department.
+Welcome to **Xpricefy**! This project is designed to provide an efficient and scalable solution for managing pricing of solutions in an IT department.
 
 # Running the App
 
