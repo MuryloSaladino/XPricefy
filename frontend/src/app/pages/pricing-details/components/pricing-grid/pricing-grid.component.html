@@ -1,0 +1,31 @@
+<div class="gi-12 grid-container">
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Total Cost:</h4>
+        <h2 class="text-green">{{product.price | brlCurrency}}</h2>
+    </div>
+
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Cost Per Year:</h4>
+        <h2 class="text-green">{{pricingService.getAnnualCost(product) | brlCurrency}}</h2>
+    </div>
+
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Cost Per Client:</h4>
+        <h2 class="text-green">{{pricingService.getCostPerClient(product) | brlCurrency}}</h2>
+    </div>
+
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Cost Per Client With Tax:</h4>
+        <h2 class="text-green">{{pricingService.getCostPerClientWithTax(product) | brlCurrency}}</h2>
+    </div>
+
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Cost Per Client With Euro Tax:</h4>
+        <h2 class="text-secondary">{{pricingService.getCostPerClientWithEuroTax(product) | eurCurrency}}</h2>
+    </div>
+
+    <div class="paper fluid-column lg-gi-4 md-gi-6 sm-gi-12">
+        <h4 class="text-grey">Mensal Cost Per Client With Euro Tax:</h4>
+        <h2 class="text-secondary">{{pricingService.getMensalCostPerClientWithEuroTax(product) | eurCurrency}}</h2>
+    </div>
+</div>
