@@ -15,7 +15,7 @@ public sealed class FindAllProductsHandler(
     public async Task<List<FindAllProductsResponse>> Handle(
         FindAllProductsRequest request, CancellationToken cancellationToken)
     {
-        var products = await productRepository.GetAll(cancellationToken);
+        var products = await productRepository.GetProductsByPrice(cancellationToken);
         return mapper.Map<List<FindAllProductsResponse>>(products);
     }
 }

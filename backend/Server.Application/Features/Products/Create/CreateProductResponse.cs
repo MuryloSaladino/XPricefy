@@ -6,7 +6,7 @@ public sealed record CreateProductResponse(
     DateTime? UpdatedAt,
     DateTime? DeletedAt,
     string Name,
-    float AnnualPrice,
+    decimal Price,
     int ClientsNumber,
     int YearsToPay
 );

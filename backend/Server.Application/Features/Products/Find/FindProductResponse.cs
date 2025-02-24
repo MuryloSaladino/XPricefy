@@ -9,7 +9,7 @@ public sealed record FindProductResponse(
     DateTime? UpdatedAt,
     DateTime? DeletedAt,
     string Name,
-    float AnnualPrice,
+    decimal Price,
     int ClientsNumber,
     int YearsToPay,
     List<ProductHistoryResponse> ProductHistories 

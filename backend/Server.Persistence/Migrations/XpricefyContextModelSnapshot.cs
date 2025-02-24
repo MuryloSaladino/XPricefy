@@ -28,9 +28,6 @@ namespace Server.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("AnnualPrice")
-                        .HasColumnType("real");
-
                     b.Property<int>("ClientsNumber")
                         .HasColumnType("int");
 
@@ -40,6 +37,9 @@ namespace Server.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");

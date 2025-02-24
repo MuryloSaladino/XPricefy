@@ -4,7 +4,7 @@ namespace Server.Application.Features.Products.Create;
 
 public sealed record CreateProductRequest(
     string Name,
-    float AnnualPrice,
+    decimal Price,
     int ClientsNumber,
     int YearsToPay
 ) : IRequest<CreateProductResponse>;

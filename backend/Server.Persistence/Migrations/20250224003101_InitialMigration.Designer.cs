@@ -12,7 +12,7 @@ using Server.Persistence.Context;
 namespace Server.Persistence.Migrations
 {
     [DbContext(typeof(XpricefyContext))]
-    [Migration("20250221004058_InitialMigration")]
+    [Migration("20250224003101_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -31,9 +31,6 @@ namespace Server.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("AnnualPrice")
-                        .HasColumnType("real");
-
                     b.Property<int>("ClientsNumber")
                         .HasColumnType("int");
 
@@ -43,6 +40,9 @@ namespace Server.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
