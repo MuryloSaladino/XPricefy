@@ -14,17 +14,24 @@ export class PricingDetails implements OnInit {
     
     productId: string | null = null;
     product!: Product;
+    loading: boolean = true;
 
     constructor(
-        private readonly pricingServer: PricingService,
         private readonly productsRepository: ProductsRepository,
-        private readonly usersRepository: UsersRepository,
         private readonly route: ActivatedRoute,
+        readonly pricingService: PricingService,
     ) {
         this.productId = route.snapshot.paramMap.get("id");
     }
     
     async ngOnInit(): Promise<void> {
+        setTimeout(async () => {
+            await this.updateProduct();
+            this.loading = false;
+        }, 1)
+    }
+
+    async updateProduct() {
         this.product = await this.productsRepository.findProductById(this.productId!);
     }
 }
