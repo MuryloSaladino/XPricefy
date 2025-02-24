@@ -10,7 +10,7 @@ export class ButtonComponent {
     @Input() iconName?: string;
     @Input() fullwidth: boolean = false;
     @Input() size: "sm" | "md" | "lg" = "md";
-    @Input() variant: "contained" | "outlined" | "text" = "contained";
+    @Input() variant: "contained" | "outlined" | "text" | "contained-secondary" = "contained";
     @Input() disabled: boolean = false;
     @Output() onClick = new EventEmitter<Event>();
 

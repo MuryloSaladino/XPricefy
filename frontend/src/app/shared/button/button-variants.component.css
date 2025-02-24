@@ -10,6 +10,18 @@
 }
 
 
+.contained-secondary {
+    background-color: var(--secondary-main);
+    border: 1px solid var(--secondary-main);
+
+    color: var(--gray-0);
+}
+.contained-secondary:hover {
+    background-color: var(--secondary-dark);
+    border: 1px solid var(--secondary-dark);
+}
+
+
 .outlined {
     background-color: transparent;
     border: 1px solid var(--primary-main);
