@@ -20,6 +20,7 @@ export class PricingDetails implements OnInit {
         private readonly productsRepository: ProductsRepository,
         private readonly route: ActivatedRoute,
         readonly pricingService: PricingService,
+        readonly router: Router,
     ) {
         this.productId = route.snapshot.paramMap.get("id");
     }

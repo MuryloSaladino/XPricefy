@@ -8,6 +8,9 @@
     max-width: 1000px;
     margin: 3rem auto;
 }
+.container > app-icon {
+    cursor: pointer;
+}
 
 .card {
     background-color: var(--gray-0);
