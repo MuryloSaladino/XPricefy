@@ -21,6 +21,7 @@ docker-compose up --build
 
 ### ⚠️ Observations
 🔴 **SQL Server Image Size**: The SQL Server image used in this project is quite large. It might take a while to download.
+🟢 **Testing the Frontend**: make sure to hit the Populate button when testing the frontend. It will also popup a button to make the login easier.
 
 Once the build is complete, open your browser and go to:
 
