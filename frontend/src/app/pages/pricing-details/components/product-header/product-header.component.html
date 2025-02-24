@@ -1,0 +1,16 @@
+<edit-product-modal
+    *ngIf="openModal"
+    [product]="product"
+    (onClose)="handleCloseModal()"
+    (onEdit)="onEdit.emit()"
+/>
+
+<div class="paper" (click)="handleOpenModal()">
+    <app-icon name="edit" class="edit-icon"/>
+
+    <div class="spaced-row">
+        <h1 class="text-primary">{{product.name}}</h1>
+        <h2>Clients: {{product.clientsNumber}}</h2>
+        <h2>Year: {{product.createdAt | formatDate: 'YYYY'}} - {{+(product.createdAt | formatDate: 'YYYY') + product.yearsToPay - 1}}</h2>
+    </div>
+</div>
