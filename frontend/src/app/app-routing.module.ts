@@ -7,10 +7,6 @@ import { PricingDetails } from './pages/pricing-details/pricing-details.page';
 
 const routes: Routes = [
     {
-        path: "**",
-        component: LoginPage,
-    },
-    {
         path: "login",
         component: LoginPage,
     },
@@ -23,7 +19,11 @@ const routes: Routes = [
         path: "p/:id",
         component: PricingDetails,
         canActivate: [authGuard]
-    }
+    },
+    {
+        path: "**",
+        component: LoginPage,
+    },
 ];
 
 @NgModule({
