@@ -4,7 +4,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Development Price</th>
+                <th>Annual Price Per Client + Euro Tax</th>
                 <th>Last Updated Date</th>
             </tr>
         </thead>
@@ -12,7 +12,7 @@
             <tr *ngFor="let row of products; let i = index" (click)="navigateToDetails(row.id)">
                 <td>{{ i + 1 }}</td>
                 <td>{{ row.name }}</td>
-                <td>{{ pricingService.getCostWithMargin(row) | brlCurrency }}</td>
+                <td>{{ pricingService.getCostPerClientWithEuroTax(row) | eurCurrency }}</td>
                 <td>{{ row.updatedAt | formatDate }}</td>
             </tr>
         </tbody>
