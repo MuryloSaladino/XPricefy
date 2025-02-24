@@ -10,7 +10,7 @@ export interface Product extends BaseEntity {
 }
 
 export interface ProductSummary extends 
-    Pick<Product, "id" | "updatedAt" | "name" | "price"> {}
+    Omit<Product, "productHistories"> {}
 
 export interface ProductCreation extends 
     Omit<Product, keyof BaseEntity | "productHistories"> {}
