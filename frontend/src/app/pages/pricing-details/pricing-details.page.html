@@ -1,5 +1,31 @@
 <app-header/>
 
-<div class="container">
-    
+<div
+    [ngClass]="{
+        'wrapper': true,
+        'loading': loading
+    }"
+>
+    <div *ngIf="product && !loading" class="container grid-container">
+
+        <product-header
+            [product]="product"
+            class="gi-12"
+            (onEdit)="updateProduct()"
+        />
+
+        <pricing-grid
+            [product]="product"
+            class="gi-12"
+        /> 
+
+        <div class="gi-12 history-container">
+            <h3>History</h3>
+
+            <product-history 
+                *ngFor="let history of product.productHistories"
+                [history]="history"
+            />
+        </div>
+    </div>
 </div>
