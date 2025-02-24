@@ -18,6 +18,12 @@ import { HeaderComponent } from './shared/header/header.component';
 import { CreateProductModal } from './pages/home/components/create-product-modal/create-product-modal.component';
 import { AvatarComponent } from './shared/avatar/avatar.component';
 import { PricingDetails } from './pages/pricing-details/pricing-details.page';
+import { EurCurrencyPipe } from './core/pipes/eur-currency.pipe';
+import { ProductHeaderComponent } from './pages/pricing-details/components/product-header/product-header.component';
+import { PricingGridComponent } from './pages/pricing-details/components/pricing-grid/pricing-grid.component';
+import { ProductHistoryComponent } from './pages/pricing-details/components/product-history/product-history.component';
+import { HistoryActionNamePipe } from './core/pipes/history-action-name.pipe';
+import { EditProductModal } from './pages/pricing-details/components/edit-product-modal/edit-product-modal.component';
 
 @NgModule({
     declarations: [
@@ -38,10 +44,16 @@ import { PricingDetails } from './pages/pricing-details/pricing-details.page';
         // Page Components
         CreateProductModal,
         ProductTableComponent,
+        ProductHeaderComponent,
+        PricingGridComponent,
+        ProductHistoryComponent,
+        EditProductModal,
 
         // Pipes
         BrlCurrencyPipe,
+        EurCurrencyPipe,
         FormatDatePipe,
+        HistoryActionNamePipe,
     ],
     imports: [
         BrowserModule,
