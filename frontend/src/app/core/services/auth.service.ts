@@ -9,6 +9,10 @@ import { UsersRepository } from "../repositories/users.repository";
 interface LoginResponse {
     token: string;
 }
+export interface LoginPayload {
+    username: string;
+    password: string;
+}
 
 @Injectable({
     providedIn: "root"
